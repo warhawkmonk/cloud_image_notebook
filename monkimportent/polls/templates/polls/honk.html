@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<style>
+            body,
+            html {
+                margin-top: 0;
+                padding: 0;
+                height: 100%;
+                background-size: 100%;
+                background-image: url('https://i.pinimg.com/originals/78/60/fa/7860fa349a211e70bda88d212c84e3c2.jpg')
+            }
+            .button {
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                      }
+
+.button1 {background-color: #4CAF50;} /* Green */
+	</style>
+</head>
+<body>
+<h1> CHOOSE AN IMAGE FOR SPECIFIC VALUE FOR TOOLS</h1>
+    <form method = "post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1>{{ form.as_p }}</h1>
+        <button  type="submit" class="button button1" >Upload</button>
+    </form>
+    <a href="{% url 'success' %}"><button class="button button1">SAVED</button> </a>
+    <h3>WHY TO CHOOSE MONK ANALYSIS</h3>
+    <br>
+    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20200616075543/matUa.png" height="400" width="800">
+</body>
+</html>

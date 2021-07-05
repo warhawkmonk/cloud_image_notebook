@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <head>
+        <style>
+            body,
+            html {
+                margin-top: 0;
+                padding: 0;
+                height: 100%;
+                background-size: 100%;
+                background-image: url('https://cdn.wallpapersafari.com/89/64/cWLnYu.jpg')
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            /* Create three equal columns that floats next to each other */
+            .column {
+                float: left;
+                width: 50%;
+                padding: 1px;
+                height: 700px;
+                /* Should be removed. Only for demonstration */
+            }
+
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+            .button {
+            position: relative;
+            padding: 8px 16px;
+            background: #009579;
+            border: none;
+            outline: none;
+            border-radius: 2px;
+            cursor: pointer;
+            }
+
+            .button:active {
+            background: #007a63;
+            }
+
+            .button__text {
+            font: bold 20px "Quicksand", san-serif;
+            color: #ffffff;
+            transition: all 0.2s;
+            }
+
+            .button--loading .button__text {
+            visibility: hidden;
+            opacity: 0;
+            }
+
+            .button--loading::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            border: 4px solid transparent;
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: button-loading-spinner 1s ease infinite;
+            }
+
+            @keyframes button-loading-spinner {
+            from {
+                transform: rotate(0turn);
+            }
+
+            to {
+                transform: rotate(1turn);
+            }
+            }
+        </style>
+    </head>
+    <h2 align=center>Instructions are mentioned below</h2>
+    <div class="row">
+        <div class="column" style="background-color:rgba(170, 170, 170, 0);">
+            <form method="post" action="{% url 'compiler' %}">{% csrf_token %}
+                <ul>
+                    <div>
+                        <b>import numpy as np</b>
+                        <br>
+                        <b>import cv2</b>
+                        <br>
+                        <b>from PIL import Image</b>
+                        <br>
+                        <b>img=latest.output()</b> #edited image
+                        <br>
+                        <b>workflow=selected images from gallary</b>
+                        <textarea rows="16" cols="100" name="description" style="background-color:black;color:white;">
+                    {{workable_hardworking}}
+
+                </textarea>
+                    </div>
+                    <button type="submit" name=return value="RUN" class="button" onclick="this.classList.toggle('button--loading')">RUN</button>
+                </ul>
+            </form>
+            <div align=center>
+                <h1>Instructions</h1>
+                <p>use function <b>normal_monk_smart(request, img)</b> to get on the given screen</p>
+                <p><b>img</b> is a numpy array</p>
+                <p>use request as <b>request</b> in function</p>
+                <p>use <b>numpy</b> array for manupulation and use above function to check</p>
+                <p>right side given images is in order as <b>workflow</b></p>
+                <p>workflow is a <b>list</b></p>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="column" style="background-color:rgba(187, 187, 187, 0.014);">
+            <div align=center>
+                <h2>OUTPUT</h2>
+                <a href="{% url 'compiler' %}" class="button" >REFRESH</a>
+                <a href="{% url 'image' %}" class="button" >PREVIOUS PAGE</a>
+                <br>
+                <br>
+                <img src={{lowest_mall}} height="220" width="420" >
+            </div>
+            
+            <ul><ul><ul><div  style="height:300px;width:500px;border:1px solid rgba(182, 1, 1, 0);font:16px/26px Georgia, Garamond, Serif;overflow:auto;" align=center>
+                <h3>WORKFLOW LIST</h3>
+                <br>
+                {% for i in kong_strong %}
+                    <img src="{{i}}" height="100px" width="100px">
+                {% endfor %}
+            </div></ul></ul></ul>
+        </div>
+    </div>
+
+</body>
+
+</html>

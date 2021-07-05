@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <head>
+        <style>
+            body,
+            html {
+                margin-top: 0;
+                padding: 0;
+                height: 100%;
+                background-size: 100%;
+                background-image: url('https://images.wallpapersden.com/image/download/flash-minimal_a2tra2yUmZqaraWkpJRmaGtlrWxrbQ.jpg')
+                }
+                .form-submit-button {
+                    background: #ffbb00;
+                    color: white;
+                    border-style: outset;
+                    border-color: #ffbb00;
+                    height: 50px;
+                    width: 200px;
+                    font: bold 15px arial, sans-serif;
+                    text-shadow:none;
+                    }
+            ul {
+                list-style-type: none;
+                }
+
+                li {
+                display: inline-block;
+                }
+
+                input[type="checkbox"][id^=""] {
+                display: none;
+                }
+
+                label {
+                border: 1px solid #fff;
+                padding: 10px;
+                display: block;
+                position: relative;
+                margin: 10px;
+                cursor: pointer;
+                }
+
+                label:before {
+                background-color: white;
+                color: white;
+                content: " ";
+                display: block;
+                border-radius: 50%;
+                border: 1px solid grey;
+                position: absolute;
+                top: -5px;
+                left: -5px;
+                width: 25px;
+                height: 25px;
+                text-align: center;
+                line-height: 28px;
+                transition-duration: 0.4s;
+                transform: scale(0);
+                }
+
+                label img {
+                height: 100px;
+                width: 100px;
+                transition-duration: 0.2s;
+                transform-origin: 50% 50%;
+                }
+
+                :checked + label {
+                border-color: rgba(252, 5, 5, 0);
+                }
+
+                :checked + label:before {
+                content: "✓";
+                background-color: rgba(128, 128, 128, 0);
+                transform: scale(1);
+                }
+
+                :checked + label img {
+                transform: scale(0.9);
+                box-shadow: 0 0 5px #333;
+                z-index: -1;
+                }
+                * {
+                    box-sizing: border-box;
+                  }
+
+                    /* Create two equal columns that floats next to each other */
+                    .column {
+                    float: left;
+                    width: 50%;
+                    padding: 10px;
+                    height: 300px; /* Should be removed. Only for demonstration */
+                  }
+
+                    /* Clear floats after the columns */
+                    .row:after {
+                    content: "";
+                    display: table;
+                    clear: both;
+                  }
+                  h1 {
+                    text-align: center;
+                    font-family: Tahoma, Arial, sans-serif;
+                    color: #ffbb00;
+                    margin: 80px 0;
+                  }
+                  .box {
+                    width: 40%;
+                    margin: 0 auto;
+                    background: rgba(255,255,255,0.2);
+                    padding: 35px;
+                    border: 2px solid #fff;
+                    border-radius: 20px/50px;
+                    background-clip: padding-box;
+                    text-align: center;
+                  }
+                  .button {
+                    font-size: 1em;
+                    padding: 10px;
+                    color: rgb(15, 3, 3);
+                    border: 2px solid #ffbb00;
+                    border-radius: 20px/50px;
+                    text-decoration: none;
+                    cursor: pointer;
+                    transition: all 0.3s ease-out;
+                  }
+                  .button:hover {
+                    background: #06d85e07;
+                  }
+                  .overlay {
+                    position: fixed;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: rgba(0, 0, 0, 0.7);
+                    transition: opacity 500ms;
+                    visibility: hidden;
+                    opacity: 0;
+                  }
+                  .overlay:target {
+                    visibility: visible;
+                    opacity: 1;
+                  }
+                  .popup {
+                    margin: 70px auto;
+                    padding: 20px;
+                    background: #fff;
+                    border-radius: 5px;
+                    width: 30%;
+                    position: relative;
+                    transition: all 5s ease-in-out;
+                  }
+                  .popup h2 {
+                    margin-top: 0;
+                    color: #333;
+                    font-family: Tahoma, Arial, sans-serif;
+                  }
+                  .popup .close {
+                    position: absolute;
+                    top: 20px;
+                    right: 30px;
+                    transition: all 200ms;
+                    font-size: 30px;
+                    font-weight: bold;
+                    text-decoration: none;
+                    color: #333;
+                  }
+                  .popup .close:hover {
+                    color: #ffbb00;
+                  }
+                  .popup .content {
+                    max-height: 30%;
+                    overflow: auto;
+                  }
+                  @media screen and (max-width: 700px){
+                    .box{
+                      width: 70%;
+                    }
+                    .popup{
+                      width: 70%;
+                    }
+                  }
+            
+</style>
+</head>
+<body>
+        </style>
+    </head>
+<h3 align =center>SCROLL AND SELECT IMAGE FOR WORKSPACE</h3>
+{% block contentt%}
+<a href={% url 'success' %}><button    class="form-submit-button">PREVIOUS PAGE</button></a>
+<a href={% url 'image' %}><button    class="form-submit-button">REFRESH</button></a>
+{% endblock %}
+{% block content %}
+<form method="post" action="{% url 'image' %}">{% csrf_token %}
+    <ul>
+      <ul><div style="height:180px;width:1300px;border:1px solid rgba(204, 204, 204, 0);font:16px/26px Georgia, Garamond, Serif;overflow:auto;" align=center>
+        {% for i in gallary %}
+        <li><input type="checkbox" id={{i}} name=power_c value="{{i}}" >
+        <label for={{i}}><img src="{{i}}" ></label>
+        </li>
+        {% endfor %}
+        <input  type="submit" name="power"  value="PUT IN WORK SPACE" class="form-submit-button" >
+      </div></ul>
+      </ul>
+</form>
+    <div class="row">
+        <div class="column" style="background-color:rgba(253, 208, 5, 0);">
+          <h5>OUTPUT</h5>
+          <form method="post" action="{% url 'image' %}">{% csrf_token %}
+            <input  type="submit" name=power3 value="UNDO" class="form-submit-button" > 
+            <input  type="submit" name=power4 value="RE-DO" class="form-submit-button" > 
+          </form>
+              {% for i in picsimp %}
+                  <img src="{{i}}" width="400" height=200>
+              {% endfor %}
+        </div>
+        <div class="column" style="background-color:rgba(187, 187, 187, 0);">
+          <h5>WORKSPACE</h5>
+          <form method="post" action="{% url 'image' %}">{% csrf_token %}
+          <ul>
+            <div>
+              <input  type="submit" name=power1 value="DELETE" class="form-submit-button" > 
+              <input  type="submit" name=power2 value="ADD" class="form-submit-button" > 
+              <input  type="submit" name=wower101 value="MULTIPLY" class="form-submit-button" > 
+            </div>
+            <div style="height:300px;width:600px;border:1px solid rgba(182, 1, 1, 0);font:16px/26px Georgia, Garamond, Serif;overflow:auto;" align=center>
+              {% for dict_item in pics %}
+                  {% for i, j in dict_item.items %}
+                  <li><input type="checkbox" id={{j}} name=samebh value="{{i}}" >
+                  <label for={{j}}><img src="{{i}}" ></label>
+                  </li>
+                  {% endfor %}
+              {% endfor %}
+            </div>
+            </ul>
+        </div>
+      </div>
+      <br><br><br>
+      <div style="height:100px;width:500px;border:1px solid rgba(182, 1, 1, 0);font:16px/26px Georgia, Garamond, Serif;overflow:auto;" >
+        <br>
+        <a class="button" href="#popup1">gausian blur</a>
+          <div id="popup1" class="overlay">
+            <div class="popup">
+              <a class="close" href="#">&times;</a>
+              <div class="content">
+                <form method="post" action="{% url 'image' %}">{% csrf_token %}
+                <input type="range" name=power5 min=1 max=250 value=50>
+                <input type="range" name=power51 min=1 max=250 value=50>
+                <input type="range" name=power52 min=1 max=250 value=50>
+                <input  type="submit" name=power6 value="submit" class="form-submit-button" > 
+                </form>
+              </div>
+            </div>
+          </div>
+        <a class="button" href="#popup2">edge detection</a>
+          <div id="popup2" class="overlay">
+            <div class="popup">
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+              <form method="post" action="{% url 'image' %}">{% csrf_token %}
+                <input type="range" name=power7 min=1 max=1500 value=50>
+                <input type="range" name=power71 min=1 max=1500 value=50>
+                <input  type="submit" name=power8 value="submit" class="form-submit-button" > 
+                </form>
+              </div>
+            </div>
+          </div>        
+          <a class="button" href="#popup3">save image</a>
+          <div id="popup3" class="overlay">
+            <div class="popup">
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+              <form method="post" action="{% url 'image' %}">{% csrf_token %}
+                <input type=text name=power81  value=1200>
+                <input type=text name=power82  value=700>
+                <h5>select size</h5>
+                <input  type="submit" name=power9 value="submit" class="form-submit-button" > 
+                </form>
+              </div>
+            </div>
+          </div>  
+          <a class="button" href="#popup4">color scheme</a>
+          <div id="popup4" class="overlay">
+            <div class="popup">
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+              <form method="post" action="{% url 'image' %}">{% csrf_token %}
+                <h5>INVERTED IMAGE</h5>
+                <input  type="submit" name=power91 value="submit" class="form-submit-button" > 
+                <h5>GRAYSCALE</h5>
+                <input  type="submit" name=power92 value="submit" class="form-submit-button" >   
+                <h5>BITWISE_NOT</h5>
+                <input  type="submit" name=power93 value="submit" class="form-submit-button" >
+                </form>
+              </div>
+            </div>
+          </div>
+          <br><br>
+          <a class="button" href="#popup5">matrix to image conversion</a>
+          <div id="popup5" class="overlay">
+            <div class="popup">
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+              <form method="post" action="{% url 'image' %}">{% csrf_token %}
+                example is shown below<br>
+                [[1,2,3],[1,2,3],[1,2,3]]<br>
+                or<br>
+                [[[1,2,3],[1,2,3],[1,2,3]],[[1,2,3],[1,2,3],[1,2,3]],[[1,2,3],[1,2,3],[1,2,3]]]
+                <input type=text name=wong134  value=[[1,2,3],[1,2,3],[1,2,3]]>
+                <input  type="submit" name=wong13 value="submit" class="form-submit-button" >
+                </form>
+              </div>
+            </div>
+          </div>
+          <a class="button" href="#popup6">Draw lines on image</a>
+          <div id="popup6" class="overlay">
+            <div class="popup">
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+              <form method="post" action="{% url 'image' %}">{% csrf_token %}
+                (i,j)=start_point
+                <br>
+                (k,l)=end_point
+                <br>
+                example
+                <br>
+                cv2.line(srcimg, start_point, end_point, color, thickness)
+                <br>
+                image size is 1200px and 720 px(length * breath)
+                <br>
+                <input type=text name=pwxong134  value="cv2.line(srcimg, start_point, end_point, (0,255,0), 9)">
+                <br>
+                dont change srcimg
+                <input  type="submit" name=pwxong13 value="submit" class="form-submit-button" >
+                </form>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+          <a class="button" href={% url 'compiler' %}>Advance options</a>
+          
+            
+  </div>           
+</form>
+
+{% endblock %}
+
+</body>
+</html>
